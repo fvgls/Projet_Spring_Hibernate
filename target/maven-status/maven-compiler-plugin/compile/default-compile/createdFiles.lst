@@ -1,1 +1,4 @@
+eu/ensg/Projet_Spring_Hibernate/model/Participant.class
 eu/ensg/Projet_Spring_Hibernate/ProjetSpringHibernateApplication.class
+eu/ensg/Projet_Spring_Hibernate/controller/ParticipantController.class
+eu/ensg/Projet_Spring_Hibernate/model/ParticipantRepository.class

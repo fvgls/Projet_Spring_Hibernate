@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns=http://www.w3.org/1999/xhtml
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Participant</title>
+    <meta http-equiv="Content-Type" content="text/html;
+    charset=UTF-8" />
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+              <th>Name</th>
+              <th>FirstName</th>
+              <th>Email</th>
+              <th>Birth Date</th>
+              <th>Organisation</th>
+              <th>Observations</th>
+            </tr>
+        </thead>
+        <thbody>
+            <th:block th:each="p : ${listParticipant}">
+               <tr>
+                  <td th:text="${p.name}">...</td>
+                  <td th:text="${p.firstname}">...</td>
+                  <td th:text="${p.email}">...</td>
+                  <td th:text="${p.birth_date}">...</td>
+                  <td th:text="${p.organisation}">...</td>
+                  <td th:text="${p.observations}">...</td>
+               </tr>
+            </th:block>
+        </thbody>
+    </table>
+</body>
+</html>
