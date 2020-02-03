@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ensg.Projet_Spring_Hibernate.metiers;
+package eu.ensg.Projet_Spring_Hibernate.model;
 
 import java.time.LocalDate;
 import javax.persistence.Column;
@@ -28,22 +28,22 @@ public class Participant {
     @Column(name="num_pers")
     private int num_pers;
     
-    @Column(name="nom", nullable=false)
-    private String nom;
+    @Column(name="name", nullable=false)
+    private String name;
     
-    @Column(name="prenom", nullable=false)
-    private String prenom;
+    @Column(name="firstname")
+    private String firstname;
     
     @Column(name="email", nullable=false)
     private String email;
     
-    @Column(name="date_naiss", nullable=false)
-    private LocalDate date_naiss;
+    @Column(name="birth_date")
+    private LocalDate birth_date;
     
-    @Column(name="organisation", nullable=false)
+    @Column(name="organisation")
     private String organisation;
     
-    @Column(name="observations", nullable=false)
+    @Column(name="observations")
     private String observations;
     
     //@ManyToOne
@@ -54,34 +54,29 @@ public class Participant {
         
     }
     
-    public Participant(String nom, String prenom, String email, LocalDate date_naiss, String organisation, String observations
-    ) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public Participant(String name, String email) {
+        this.name = name;
         this.email = email;
-        this.date_naiss = date_naiss;
-        this.organisation = organisation;
-        this.observations = observations;
     }
-    
+
     public int getNum_pers() {
         return num_pers;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getFirstname() {
+        return firstname;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public LocalDate getDate_naiss() {
-        return date_naiss;
+    public LocalDate getBirth_date() {
+        return birth_date;
     }
 
     public String getOrganisation() {
@@ -96,20 +91,20 @@ public class Participant {
         this.num_pers = num_pers;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setDate_naiss(LocalDate date_naiss) {
-        this.date_naiss = date_naiss;
+    public void setBirth_date(LocalDate birth_date) {
+        this.birth_date = birth_date;
     }
 
     public void setOrganisation(String organisation) {
@@ -120,8 +115,11 @@ public class Participant {
         this.observations = observations;
     }
     
+    
+
+    
     public String toString() {
-        return "{nom: " + this.getNom() + ", prenom: " + this.getPrenom() + ", email: " + this.getEmail() + "}";
+        return "{name: " + this.getName() + ", firstname: " + this.getFirstname() + ", email: " + this.getEmail() + "}";
     }
 }
 
