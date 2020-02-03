@@ -46,6 +46,6 @@ public class ParticipantController {
     model.addAttribute("listParticipant", participantRepository.findAll());
     
     // Sen to view
-    return "participantList";
+    return "participantsList";
   }
 }

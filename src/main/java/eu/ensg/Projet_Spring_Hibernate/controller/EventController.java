@@ -43,15 +43,15 @@ public class EventController {
   }
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Event> getAllEvent(Model model) {    //@ResponseBody Iterable<Participant>
+    public String getAllEvents(Model model) {    //@ResponseBody Iterable<Participant>
         
-        return eventRepository.findAll();
-        /*
+        //return eventRepository.findAll();
+        
         // This returns a JSON or XML with the users
-        model.addAttribute("listParticipant", eventRepository.findAll());
+        model.addAttribute("listEvents", eventRepository.findAll());
 
         // Sen to view
-        return "participantList";
-*/
+        return "eventsList";
+
     }
 }

@@ -131,5 +131,7 @@ public class Event {
     }
     
     
-    
+    public String toString() {
+        return "{id: " + this.getNum_event() + ", intitule: " + this.getIntitule() + ", theme: " + this.getTheme() +  "}";
+    }
 }
