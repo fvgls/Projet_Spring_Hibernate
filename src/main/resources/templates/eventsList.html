@@ -9,22 +9,35 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
     <p th:text="${listEvents}" />
     
-    <!--
-    <div class="form-group">
-        <label class="col-md-3 control-label">Events</label>
-            <div class="col-md-5">
-            <div th:if="${listEvents != null and not #lists.isEmpty(institutionList)}">
-                <select>
-                    <option th:each="dropDownItem : ${institutionList}"
-                                    th:value="${dropDownItem.name}"
-                                    th:text="${dropDownItem.name}" />
-                </select>
-           </div>
-           <div th:if="${institutionList == null or lists.isEmpty(institutionList)}">
-               <div>"No Institutions were found, please create some first"</div>
-           </div>
-       </div>
-    </div>
-    -->
+    <table>
+        <thead>
+            <tr>
+              <th>Intitule</th>
+              <th>Theme</th>
+              <th>Starting Date</th>
+              <th>Duration</th>
+              <th>Place</th>
+              <th>Description</th>
+              <th>Organisator</th>
+              <th>Type</th>
+              <th>Participants</th>
+            </tr>
+        </thead>
+        <thbody>
+            <th:block th:each="e : ${listEvents}">
+               <tr>
+                  <td th:text="${e.intitule}">...</td>
+                  <td th:text="${e.theme}">...</td>
+                  <td th:text="${e.starting_date}">...</td>
+                  <td th:text="${e.duration}">...</td>
+                  <td th:text="${e.nb_part_max}">...</td>
+                  <td th:text="${e.description}">...</td>
+                  <td th:text="${e.organisator}">...</td>
+                  <td th:text="${e.event_type}">...</td>
+                  <td><a href="/event/listParticipants">List</a></td>
+               </tr>
+            </th:block>
+        </thbody>
+    </table>
 </body>
 </html>

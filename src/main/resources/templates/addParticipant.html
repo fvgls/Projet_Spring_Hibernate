@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns=http://www.w3.org/1999/xhtml
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Participant</title>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div th:if="${event} != null">
+        <h1 th:text="${event.intitule}" />
+        
+    </div>
+    <div th:unless="${event} != null">
+        <p>Nullll</p>
+    </div>
+    
+    <form th:action="@{/participant/addParticipant}"
+         th:object="${newParticipant}" method="POST">
+
+         <p>Last Name: (*) 
+             <input type="text" th:field="*{name}" /> 
+         </p>  
+        <p>First Name:
+             <input type="text" th:field="*{firstname}" /> 
+         </p> 
+        <p>Email: (*)
+             <input type="text" th:field="*{email}" /> 
+         </p> 
+         <input type="submit" value="Create" />
+    </form>
+       
+    <p>(*) Thoose elements are required.</p>
+       
+      <!-- Check if errorMessage is not null and not empty -->
+       
+      <div th:if="${errorMessage}" th:utext="${errorMessage}"
+         style="color:red;font-style:italic;">
+         ...
+      </div>
+</body>
+</html>

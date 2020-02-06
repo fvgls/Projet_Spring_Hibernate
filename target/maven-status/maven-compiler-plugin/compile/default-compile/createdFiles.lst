@@ -1,7 +1,8 @@
 eu/ensg/Projet_Spring_Hibernate/model/Event.class
-eu/ensg/Projet_Spring_Hibernate/model/Participant.class
 eu/ensg/Projet_Spring_Hibernate/ProjetSpringHibernateApplication.class
+eu/ensg/Projet_Spring_Hibernate/model/EventRepository.class
+eu/ensg/Projet_Spring_Hibernate/model/Participant.class
 eu/ensg/Projet_Spring_Hibernate/controller/EventController.class
 eu/ensg/Projet_Spring_Hibernate/controller/ParticipantController.class
 eu/ensg/Projet_Spring_Hibernate/model/ParticipantRepository.class
-eu/ensg/Projet_Spring_Hibernate/model/EventRepository.class
+eu/ensg/Projet_Spring_Hibernate/controller/MainController.class

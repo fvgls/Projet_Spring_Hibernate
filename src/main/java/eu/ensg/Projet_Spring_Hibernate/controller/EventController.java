@@ -6,10 +6,14 @@
 package eu.ensg.Projet_Spring_Hibernate.controller;
 
 import eu.ensg.Projet_Spring_Hibernate.model.*;
+import java.util.ArrayList;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,17 +45,40 @@ public class EventController {
     
     return "createEvent";
   }
+  
+  
+  @GetMapping(path = "/{num_event}")
+    public String getEventFromId(@PathVariable int num_event, Model model) {
+        
+        Optional<Event> ev = eventRepository.findById(num_event);
+        
+        if (ev.isPresent()) {
+            model.addAttribute("event", ev.get());
+        }
+        else {
+            model.addAttribute("event", null);
+        }
+        
+        // Send to view
+        return "addParticipantToEvent";
+
+    }
 
     @GetMapping(path = "/all")
-    public String getAllEvents(Model model) {    //@ResponseBody Iterable<Participant>
+    public String getAllEvents(Model model) {
         
-        //return eventRepository.findAll();
-        
-        // This returns a JSON or XML with the users
         model.addAttribute("listEvents", eventRepository.findAll());
 
-        // Sen to view
+        // Send to view
         return "eventsList";
 
+    }
+    
+    
+    @PostMapping("/addParticipant")
+    public String addParticipantToEvent(@ModelAttribute("newParticipant") Participant newParticipant, Model model) {
+        
+        
+        return "pouet";
     }
 }
