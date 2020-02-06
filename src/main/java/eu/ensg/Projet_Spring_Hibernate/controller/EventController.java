@@ -7,6 +7,7 @@ package eu.ensg.Projet_Spring_Hibernate.controller;
 
 import eu.ensg.Projet_Spring_Hibernate.model.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class EventController {
     
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private ParticipantRepository participantRepository;
     
     
     /**
@@ -91,14 +94,50 @@ public class EventController {
     
     
     /**
-     * 
+     * Post request to add this participant to the event
      * @param newParticipant
      * @param model
      * @return 
      */
-    @PostMapping("/addParticipant")
-    public String addParticipantToEvent(@ModelAttribute("newParticipant") Participant newParticipant, Model model) {
+    @PostMapping("/addParticipant/{num_event}")
+    public String addParticipantToEvent(@PathVariable int num_event, Model model, @ModelAttribute("newParticipant") Participant newParticipant) {
+        
+        Optional<Event> ev = eventRepository.findById(num_event);
+        if (ev.isPresent()) {
+            
+            if (newParticipant.getName() != null 
+                    && newParticipant.getName().length() > 0
+                    && newParticipant.getEmail() != null 
+                    && newParticipant.getEmail().length() > 0) {
 
-        return "pouet";
+
+                newParticipant.setEvent(ev.get());
+                
+                participantRepository.save(newParticipant);
+
+                model.addAttribute("participant", newParticipant);
+
+                return "redirect:/event/listParticipants/" + ev.get().getNum_event();
+            }
+            model.addAttribute("events", ev);
+            model.addAttribute("errorMessage", "Name and email are requested");
+        }
+        
+            model.addAttribute("errorMessage", "An error has occured, try again later");
+        
+
+        return "addParticipant";
+    }
+    
+    
+    @GetMapping("/listParticipants/{num_event}")
+    public String listParticipant(@PathVariable int num_event, Model model) {
+        Optional<Event> ev = eventRepository.findById(num_event);
+        if (ev.isPresent()) {
+            model.addAttribute("listParticipant", ev.get().getParticipants());
+            model.addAttribute("event", ev.get());
+        }
+        
+        return "participantsList";
     }
 }

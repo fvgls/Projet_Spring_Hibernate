@@ -49,8 +49,8 @@ public class Participant {
     @Column(name="observations")
     private String observations;
     
-    @ManyToMany
-    private List<Event> events = new ArrayList<>();
+    @ManyToOne
+    private Event event;
     
     
     public Participant(){
@@ -90,8 +90,8 @@ public class Participant {
         return observations;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public Event getEvent() {
+        return event;
     }
     
 
@@ -123,8 +123,8 @@ public class Participant {
         this.observations = observations;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEvent(Event event) {
+        this.event = event;
     }
     
     

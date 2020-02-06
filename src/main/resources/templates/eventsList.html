@@ -34,7 +34,7 @@ xmlns:th="http://www.thymeleaf.org">
                   <td th:text="${e.description}">...</td>
                   <td th:text="${e.organisator}">...</td>
                   <td th:text="${e.event_type}">...</td>
-                  <td><a href="/event/listParticipants">List</a></td>
+                  <td><a th:href="@{/event/listParticipants/{id}(id=${e.num_event})}">List</a></td>
                </tr>
             </th:block>
         </thbody>

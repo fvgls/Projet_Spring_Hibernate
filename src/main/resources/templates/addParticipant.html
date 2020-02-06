@@ -15,26 +15,41 @@ and open the template in the editor.
     <div th:if="${event} != null">
         <h1 th:text="${event.intitule}" />
         
-    </div>
-    <div th:unless="${event} != null">
-        <p>Nullll</p>
-    </div>
-    
-    <form th:action="@{/participant/addParticipant}"
+        <form th:action="@{/event/addParticipant/{id}(id=${event.num_event})}"
          th:object="${newParticipant}" method="POST">
 
-         <p>Last Name: (*) 
-             <input type="text" th:field="*{name}" /> 
-         </p>  
-        <p>First Name:
-             <input type="text" th:field="*{firstname}" /> 
-         </p> 
-        <p>Email: (*)
-             <input type="text" th:field="*{email}" /> 
-         </p> 
-        
-         <input type="submit" value="Create" />
-    </form>
+            <p>Last Name: (*) 
+                <input type="text" th:field="*{name}" /> 
+            </p>  
+           <p>First Name:
+                <input type="text" th:field="*{firstname}" /> 
+            </p> 
+           <p>Email: (*)
+                <input type="text" th:field="*{email}" /> 
+            </p> 
+
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+    <div th:unless="${event} != null">
+        <form th:action="@{/participant/addParticipant}"
+         th:object="${newParticipant}" method="POST">
+
+            <p>Last Name: (*) 
+                <input type="text" th:field="*{name}" /> 
+            </p>  
+           <p>First Name:
+                <input type="text" th:field="*{firstname}" /> 
+            </p> 
+           <p>Email: (*)
+                <input type="text" th:field="*{email}" /> 
+            </p> 
+
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+    
+    
        
     <p>(*) Thoose elements are required.</p>
        

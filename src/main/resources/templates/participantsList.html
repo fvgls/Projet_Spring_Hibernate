@@ -7,7 +7,11 @@ xmlns:th="http://www.thymeleaf.org">
     charset=UTF-8" />
 </head>
 <body>
-    
+    <div th:if="${event} != null">
+        <h1 th:text="${event.intitule}" />
+        <a th:href="@{/addParticipant/{id}(id=${event.num_event})}">Add participant</a>
+    </div>
+    <h2 th:text="${listParticipant}"></h2>
     <table>
         <thead>
             <tr>

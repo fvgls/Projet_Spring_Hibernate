@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -55,9 +56,11 @@ public class Event {
     //@Column(name="event_type", nullable=false)
     private String event_type;
     
-    @ManyToMany
-   private List<Participant> participants = new ArrayList<>();
+    @OneToMany(mappedBy="event")
+    private List<Participant> participants = new ArrayList<>();
 
+    
+    
     public int getNum_event() {
         return num_event;
     }
@@ -94,6 +97,11 @@ public class Event {
         return event_type;
     }
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+
     public void setNum_event(int num_event) {
         this.num_event = num_event;
     }
@@ -129,6 +137,11 @@ public class Event {
     public void setEvent_type(String event_type) {
         this.event_type = event_type;
     }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+    
     
     
     public String toString() {

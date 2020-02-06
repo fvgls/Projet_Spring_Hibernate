@@ -5,12 +5,15 @@
  */
 package eu.ensg.Projet_Spring_Hibernate.controller;
 
+import eu.ensg.Projet_Spring_Hibernate.model.Event;
 import eu.ensg.Projet_Spring_Hibernate.model.EventRepository;
 import eu.ensg.Projet_Spring_Hibernate.model.Participant;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -41,11 +44,15 @@ public class MainController {
      * @param model
      * @return View addParticipant
      */
-    @GetMapping(path = "/addParticipant")
-    public String addParticipantPage(Model model) {
+    @GetMapping(path = "/addParticipant/{num_event}")
+    public String addParticipantPage(@PathVariable int num_event, Model model) {
         Participant newParticipant = new Participant();
         model.addAttribute("newParticipant", newParticipant);
-        model.addAttribute("listEvents", eventRepository.findAll());
+        
+        Optional<Event> ev = eventRepository.findById(num_event);
+        if (ev.isPresent()) {
+            model.addAttribute("event", ev.get());
+        }
         
         // Send to view
         return "addParticipant";
