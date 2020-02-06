@@ -17,19 +17,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path = "/participant") // This means URL's start with /demo (after Application path)
+/**
+ * Controller for class Participant
+ * @author fvgls
+ */
+@Controller 
+@RequestMapping(path = "/participant")
 public class ParticipantController {
 
     @Autowired
     private ParticipantRepository participantRepository;
 
     
-    
-    @PostMapping(path = "/create") // Map ONLY POST Requests
+    /**
+     * Post request for creating new Participant
+     * @param name
+     * @param email
+     * @param model
+     * @return String participant
+     */
+    @PostMapping(path = "/create")
     public @ResponseBody
-    String createNewParticipant(@RequestParam String name,
-             @RequestParam String email, Model model) {
+    String createNewParticipant(@RequestParam String name, @RequestParam String email, Model model) {
 
         Participant p = new Participant();
         p.setName(name);
@@ -38,12 +47,18 @@ public class ParticipantController {
 
         model.addAttribute("participant", p);
 
-        return "createParticipant";
+        return "createParticipants: " + p.toString();
     }
     
     
-
-    @PostMapping(path = "/addParticipant") // Map ONLY POST Requests
+    
+    /**
+     * Post request to add new Participant from formulaire
+     * @param model
+     * @param newParticipant
+     * @return View /participant/list
+     */
+    @PostMapping(path = "/addParticipant")
     public
     String addNewParticipant(Model model, @ModelAttribute("newParticipant") Participant newParticipant) {
 
@@ -64,7 +79,11 @@ public class ParticipantController {
     }
 
     
-    
+    /**
+     * Get request to get all Participant
+     * @param model
+     * @return View participantList
+     */
     @GetMapping(path = "/all")
     public String getAllParticipant(Model model) {
         model.addAttribute("listParticipant", participantRepository.findAll());

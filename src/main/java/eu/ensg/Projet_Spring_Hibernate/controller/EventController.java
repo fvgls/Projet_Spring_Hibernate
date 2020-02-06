@@ -20,21 +20,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author formation
+ * Controller for class Event
+ * @author fvgls
  */
-@Controller // This means that this class is a Controller
-@RequestMapping(path = "/event") // This means URL's start with /demo (after Application path)
+@Controller
+@RequestMapping(path = "/event")
 public class EventController {
-
+    
     @Autowired
     private EventRepository eventRepository;
     
-    @PostMapping(path="/add") // Map ONLY POST Requests
-  public @ResponseBody String addNewEvent (@RequestParam String intitule
-      , @RequestParam String theme, Model model) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
+    
+    /**
+     * Post method to create a new event with params directly
+     * @param intitule
+     * @param theme
+     * @param model
+     * @return View createEvent
+     */
+    @PostMapping(path="/add")
+  public @ResponseBody String addNewEvent (@RequestParam String intitule, @RequestParam String theme, Model model) {
 
     Event e = new Event();
     e.setIntitule(intitule);
@@ -43,10 +48,16 @@ public class EventController {
     
     model.addAttribute("event", e);
     
-    return "createEvent";
+    return "createEvents: " + e.toString();
   }
   
   
+  /**
+   * Get event information by id
+   * @param num_event
+   * @param model
+   * @return View addParticipantToEvent
+   */
   @GetMapping(path = "/{num_event}")
     public String getEventFromId(@PathVariable int num_event, Model model) {
         
@@ -64,21 +75,30 @@ public class EventController {
 
     }
 
+    
+    /**
+     * Get all events
+     * @param model
+     * @return View eventsList
+     */
     @GetMapping(path = "/all")
     public String getAllEvents(Model model) {
-        
         model.addAttribute("listEvents", eventRepository.findAll());
 
         // Send to view
         return "eventsList";
-
     }
     
     
+    /**
+     * 
+     * @param newParticipant
+     * @param model
+     * @return 
+     */
     @PostMapping("/addParticipant")
     public String addParticipantToEvent(@ModelAttribute("newParticipant") Participant newParticipant, Model model) {
-        
-        
+
         return "pouet";
     }
 }

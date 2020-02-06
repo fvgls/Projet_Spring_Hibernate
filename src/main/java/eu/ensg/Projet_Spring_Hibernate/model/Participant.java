@@ -90,6 +90,11 @@ public class Participant {
         return observations;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
+    
+
     public void setNum_pers(int num_pers) {
         this.num_pers = num_pers;
     }
@@ -117,6 +122,12 @@ public class Participant {
     public void setObservations(String observations) {
         this.observations = observations;
     }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+    
+    
     
     
 
