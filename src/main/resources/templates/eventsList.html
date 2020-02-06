@@ -5,26 +5,28 @@ xmlns:th="http://www.thymeleaf.org">
     <title>List Event</title>
     <meta http-equiv="Content-Type" content="text/html;
     charset=UTF-8" />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <p th:text="${listEvents}" />
     
-    <table>
-        <thead>
+    <h2>List of Events</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
-              <th>Intitule</th>
-              <th>Theme</th>
-              <th>Starting Date</th>
-              <th>Duration</th>
-              <th>Place</th>
-              <th>Description</th>
-              <th>Organisator</th>
-              <th>Type</th>
-              <th>Participants</th>
+              <th scope="col">Intitule</th>
+              <th scope="col">Theme</th>
+              <th scope="col">Starting Date</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Place</th>
+              <th scope="col">Description</th>
+              <th scope="col">Organisator</th>
+              <th scope="col">Type</th>
+              <th scope="col">Participants</th>
             </tr>
         </thead>
         <thbody>
-            <th:block th:each="e : ${listEvents}">
+            <th:block th:each="e : ${listEvents}" scope="row">
                <tr>
                   <td th:text="${e.intitule}">...</td>
                   <td th:text="${e.theme}">...</td>
@@ -34,7 +36,10 @@ xmlns:th="http://www.thymeleaf.org">
                   <td th:text="${e.description}">...</td>
                   <td th:text="${e.organisator}">...</td>
                   <td th:text="${e.event_type}">...</td>
-                  <td><a th:href="@{/event/listParticipants/{id}(id=${e.num_event})}">List</a></td>
+                  <td>
+                      <a th:href="@{/event/listParticipants/{id}(id=${e.num_event})}"class="btn btn-secondary">List</a>
+                      <a th:href="@{/addParticipant/{id}(id=${e.num_event})}"class="btn btn-secondary">Participate</a>
+                  </td>
                </tr>
             </th:block>
         </thbody>

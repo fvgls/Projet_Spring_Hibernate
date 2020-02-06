@@ -5,26 +5,48 @@ xmlns:th="http://www.thymeleaf.org">
     <title>List Participant</title>
     <meta http-equiv="Content-Type" content="text/html;
     charset=UTF-8" />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <div th:if="${event} != null">
-        <h1 th:text="${event.intitule}" />
-        <a th:href="@{/addParticipant/{id}(id=${event.num_event})}">Add participant</a>
-    </div>
-    <h2 th:text="${listParticipant}"></h2>
-    <table>
-        <thead>
+    
+    <!-- Nav Bar -->
+    <ul class="nav navbar-dark bg-dark justify-content-between">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <h4 class="nav-link disabled" href="#">List of Participant</h4>
+        </li>
+        
+        <li></li>
+    </ul>
+    
+    
+    <!-- List Participants -->
+    <ul class="nav justify-content-between" th:if="${event} != null">
+
+        <li class="nav-item">
+          <h4 class="nav-link disabled" th:text="${event.intitule}"/>
+        </li>
+        <li class="nav-item"> 
+            <a th:href="@{/addParticipant/{id}(id=${event.num_event})}" class="nav-link btn-outline-primary">Add participant</a>
+    </ul>
+
+    
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
-              <th>Name</th>
-              <th>FirstName</th>
-              <th>Email</th>
-              <th>Birth Date</th>
-              <th>Organisation</th>
-              <th>Observations</th>
+              <th scope="col">Name</th>
+              <th scope="col">FirstName</th>
+              <th scope="col">Email</th>
+              <th scope="col">Birth Date</th>
+              <th scope="col">Organisation</th>
+              <th scope="col">Observations</th>
             </tr>
         </thead>
         <thbody>
-            <th:block th:each="p : ${listParticipant}">
+            <th:block th:each="p : ${listParticipant}" scope="row">
                <tr>
                   <td th:text="${p.name}">...</td>
                   <td th:text="${p.firstname}">...</td>
