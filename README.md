@@ -28,13 +28,11 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 
 
 
-## Run the project
-
-### Installation
+## Installation
 
 The project required a mysql database and an IDE, such as Eclipse or NetBean, to run a Maven project.
 
-#### MySQL
+### MySQL and database
 
 1. Install mysql:
     ```
@@ -64,7 +62,12 @@ The project required a mysql database and an IDE, such as Eclipse or NetBean, to
     $ mysql -u springuser -pThePassword fvignolles_ensg < db_sample.sql
     ```
 
+## Run the project
 
+In an IDE:
+1. Build the project with Maven (to download the dependencies).
+2. Run the project
+3. The application is displayed at http://localhost:8080
 
 
 ---
