@@ -7,6 +7,7 @@ package eu.ensg.Projet_Spring_Hibernate.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +42,7 @@ public class Participant {
     private String email;
     
     @Column(name="birth_date")
-    private LocalDate birth_date;
+    private Date birth_date;
     
     @Column(name="organisation")
     private String organisation;
@@ -78,7 +79,7 @@ public class Participant {
         return email;
     }
 
-    public LocalDate getBirth_date() {
+    public Date getBirth_date() {
         return birth_date;
     }
 
@@ -111,7 +112,7 @@ public class Participant {
         this.email = email;
     }
 
-    public void setBirth_date(LocalDate birth_date) {
+    public void setBirth_date(Date birth_date) {
         this.birth_date = birth_date;
     }
 

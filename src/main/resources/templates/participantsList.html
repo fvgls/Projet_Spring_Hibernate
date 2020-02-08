@@ -50,7 +50,7 @@ xmlns:th="http://www.thymeleaf.org">
 	                  <td th:text="${p.name}">...</td>
 	                  <td th:text="${p.firstname}">...</td>
 	                  <td th:text="${p.email}">...</td>
-	                  <td th:text="${p.birth_date}">...</td>
+	                  <td th:text="${#dates.format(p.birth_date, 'yyyy-MM-dd')}">...</td>
 	                  <td th:text="${p.organisation}">...</td>
 	               </tr>
 	            </th:block>

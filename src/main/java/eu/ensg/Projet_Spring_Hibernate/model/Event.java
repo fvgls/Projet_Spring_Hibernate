@@ -7,6 +7,7 @@ package eu.ensg.Projet_Spring_Hibernate.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,7 +43,7 @@ public class Event {
     private LocalDate starting_date;
     
     //@Column(name="duration", nullable=false)
-    private LocalDate duration;
+    private Date duration;
     
     //@Column(name="nb_part_max", nullable=false)
     private Integer nb_part_max;
@@ -77,7 +78,7 @@ public class Event {
         return starting_date;
     }
 
-    public LocalDate getDuration() {
+    public Date getDuration() {
         return duration;
     }
 
@@ -118,7 +119,7 @@ public class Event {
         this.starting_date = starting_date;
     }
 
-    public void setDuration(LocalDate duration) {
+    public void setDuration(Date duration) {
         this.duration = duration;
     }
 

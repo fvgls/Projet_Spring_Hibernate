@@ -88,13 +88,12 @@ public class EventController {
         
         if (ev.isPresent()) {
             model.addAttribute("event", ev.get());
+            return "eventInfo";
         }
-        else {
-            model.addAttribute("event", null);
-        }
+        model.addAttribute("errorMessage", "An error has occured, try again later");
         
         // Send to view
-        return "addParticipantToEvent";
+        return "eventsList";
 
     }
 
