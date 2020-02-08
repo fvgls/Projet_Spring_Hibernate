@@ -11,12 +11,12 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
     
     <!-- Nav Bar -->
-    <ul class="nav navbar-dark bg-dark justify-content-between">
+    <ul class="nav navbar-light bg-light justify-content-between">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <h4 class="nav-link disabled" href="#">List of Participant</h4>
+          <h4 class="nav-link disabled" href="#">List of Participants</h4>
         </li>
         
         <li></li>
@@ -27,7 +27,7 @@ xmlns:th="http://www.thymeleaf.org">
     <ul class="nav justify-content-between" th:if="${event} != null">
 
         <li class="nav-item">
-          <h4 class="nav-link disabled" th:text="${event.intitule}"/>
+          <h4 class="nav-link disabled" th:text="'Event: ' + ${event.intitule}"/>
         </li>
         <li class="nav-item"> 
             <a th:href="@{/addParticipant/{id}(id=${event.num_event})}" class="nav-link btn-outline-primary">Add participant</a>
