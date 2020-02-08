@@ -19,8 +19,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- *
- * @author formation
+ * Class Participant
+ * Hibernate management
+ * @author fvgls
  */
 @Entity
 @Table(name = "participant")
@@ -54,6 +55,7 @@ public class Participant {
     private Event event;
     
     
+    /* Constructors */
     public Participant(){
         
     }
@@ -62,7 +64,9 @@ public class Participant {
         this.name = name;
         this.email = email;
     }
-
+    
+    
+    /* Getters & Setters */
     public int getNum_pers() {
         return num_pers;
     }
@@ -129,10 +133,8 @@ public class Participant {
     }
     
     
-    
-    
+    /* Other functions */
 
-    
     public String toString() {
         return "{name: " + this.getName() + ", firstname: " + this.getFirstname() + ", email: " + this.getEmail() + "}";
     }

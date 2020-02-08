@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html xmlns=http://www.w3.org/1999/xhtml
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Event</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<title>Add Event</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 </head>
 <body>
 
 	<!-- Nav Bar -->
-    <ul class="nav navbar-light bg-light justify-content-between">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <h4 class="nav-link disabled" href="#">New Event</h4>
-        </li>
-        
-        <li></li>
-    </ul>
-    
-    <form th:action="@{/event/addEvent}"
-         th:object="${newEvent}" method="POST" class="col-6">
-            <div class="form-group">
-                <label for="intitule">Intitule: (*)</label>
-                <input type="text" th:field="*{intitule}" class="form-control" id="intitule"/> 
-            </div>
-            
-            <div class="form-group">
-                <label for="theme">Theme: (*)</label>
-                <input type="text" th:field="*{theme}" class="form-control" id="theme"/> 
-            </div>
-            
-            <div class="form-group">
-                <label for="organisator">Organisator:</label>
-                <input type="text" th:field="*{organisator}" class="form-control" id="organisator"/> 
-            </div>
-            
+	<ul class="nav navbar-light bg-light justify-content-between">
+		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item">
+			<h4 class="nav-link disabled" href="#">New Event</h4>
+		</li>
 
-            <button type="submit" class="btn btn-primary">Add</button>
-        </form>
+		<li></li>
+	</ul>
 
-		<p>(*) Thoose elements are required.</p>
-       
-      	<!-- Check if errorMessage is not null and not empty -->
-       
-     	 <div th:if="${errorMessage}" th:utext="${errorMessage}"
-         style="color:red;font-style:italic;">
-         ...
-      	</div>
+	<!-- Form -->
+	<form th:action="@{/event/addEvent}" th:object="${newEvent}"
+		method="POST" class="col-6">
+		<div class="form-group">
+			<label for="intitule">Intitule: (*)</label> <input type="text"
+				th:field="*{intitule}" class="form-control" id="intitule" />
+		</div>
+
+		<div class="form-group">
+			<label for="theme">Theme: (*)</label> <input type="text"
+				th:field="*{theme}" class="form-control" id="theme" />
+		</div>
+
+		<div class="form-group">
+			<label for="organisator">Organisator:</label> <input type="text"
+				th:field="*{organisator}" class="form-control" id="organisator" />
+		</div>
+
+
+		<button type="submit" class="btn btn-primary">Add</button>
+	</form>
+
+	<p>(*) Thoose elements are required.</p>
+
+
+	<!-- Check if errorMessage is not null and not empty -->
+	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+		style="color: red; font-style: italic;">...</div>
 </body>
 </html>

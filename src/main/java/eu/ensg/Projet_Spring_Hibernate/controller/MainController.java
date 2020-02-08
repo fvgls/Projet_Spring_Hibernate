@@ -58,6 +58,12 @@ public class MainController {
         return "addParticipant";
     }
     
+    
+    /**
+     * Go to the addevent form
+     * @param model
+     * @return View addEvent
+     */
     @GetMapping(path = "/addEvent")
     public String addEventPage(Model model) {
         Event newEvent = new Event();

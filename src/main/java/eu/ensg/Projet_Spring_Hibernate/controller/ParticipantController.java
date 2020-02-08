@@ -33,7 +33,7 @@ public class ParticipantController {
 
     
     /**
-     * Post request for creating new Participant
+     * Post request for creating new Participant with params directly
      * @param name
      * @param email
      * @param model
@@ -56,7 +56,7 @@ public class ParticipantController {
     
     
     /**
-     * Post request to add new Participant from formulaire
+     * Post request to add new Participant from form
      * @param model
      * @param newParticipant
      * @return View /participant/list
@@ -82,6 +82,13 @@ public class ParticipantController {
     }
     
     
+    
+    /**
+     * Get participant information by id
+     * @param num_participant
+     * @param model
+     * @return View participantInfo
+     */
     @GetMapping(path = "/{num_participant}")
     public String getParticipantFromId(@PathVariable int num_participant, Model model) {
         

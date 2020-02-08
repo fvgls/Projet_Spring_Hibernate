@@ -8,8 +8,8 @@ package eu.ensg.Projet_Spring_Hibernate.model;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
- * @author formation
+ * EventRepository for class Event
+ * @author fvgls
  */
 public interface EventRepository extends CrudRepository<Event, Integer> {
     

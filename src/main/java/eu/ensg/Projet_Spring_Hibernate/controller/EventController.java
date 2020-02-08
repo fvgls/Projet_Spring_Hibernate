@@ -39,7 +39,7 @@ public class EventController {
      * @param intitule
      * @param theme
      * @param model
-     * @return View createEvent
+     * @return String event
      */
     @PostMapping(path="/create")
 	public @ResponseBody String createNewEvent (@RequestParam String intitule, @RequestParam String theme, Model model) {
@@ -54,9 +54,14 @@ public class EventController {
 	    return "createEvents: " + e.toString();
 	}
     
+    /**
+     * Post request to add new Event from form
+     * @param model
+     * @param newEvent
+     * @return View /event/all
+     */
     @PostMapping(path = "/addEvent")
-    public
-    String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
+    public String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
 
         if (newEvent.getIntitule() != null 
                 && newEvent.getIntitule().length() > 0
@@ -79,7 +84,7 @@ public class EventController {
    * Get event information by id
    * @param num_event
    * @param model
-   * @return View addParticipantToEvent
+   * @return View eventInfo
    */
   @GetMapping(path = "/{num_event}")
     public String getEventFromId(@PathVariable int num_event, Model model) {
@@ -149,6 +154,12 @@ public class EventController {
     }
     
     
+    /**
+     * Get list of participants for the given event
+     * @param num_event
+     * @param model
+     * @return View participantsList
+     */
     @GetMapping("/listParticipants/{num_event}")
     public String listParticipant(@PathVariable int num_event, Model model) {
         Optional<Event> ev = eventRepository.findById(num_event);

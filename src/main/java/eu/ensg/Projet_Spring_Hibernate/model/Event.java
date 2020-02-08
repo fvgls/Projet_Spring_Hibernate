@@ -20,8 +20,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- *
- * @author formation
+ * Class Event
+ * Hibernate management
+ * @author fvgls
  */
 @Entity
 @Table(name="event")
