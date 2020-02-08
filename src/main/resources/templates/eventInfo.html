@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Info</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Nav Bar -->
+	<ul class="nav navbar-light bg-light justify-content-between">
+		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item">
+			<h4 class="nav-link disabled" th:text="'Information for ' + ${event}"></h4>
+		</li>
+
+		<li></li>
+	</ul>
+
+
+	<!--  Info -->
+	<dl class="row">
+
+		<dt class="col-sm-3">Intitule:</dt>
+		<dd class="col-sm-9" th:text="${event.intitule}" />
+
+		<dt class="col-sm-3">Theme:</dt>
+		<dd class="col-sm-9" th:text="${event.theme}" />
+
+		<dt class="col-sm-3">Starting date:</dt>
+		<dd class="col-sm-9"
+			th:text="${#dates.format(event.starting_date, 'yyyy-MM-dd')}" />
+
+		<dt class="col-sm-3">Ending date:</dt>
+		<dd class="col-sm-9" th:text="${#dates.format(event.ending_date)}" />
+
+		<dt class="col-sm-3">Number of Participants:</dt>
+		<dd class="col-sm-9"
+			th:text="${#lists.size(event.participants)} + ' / ' + ${event.nb_part_max}" />
+
+		<dt class="col-sm-3">Description:</dt>
+		<dd class="col-sm-9" th:text="${event.description}" />
+
+		<dt class="col-sm-3">Organisator:</dt>
+		<dd class="col-sm-9" th:text="${event.organisator}" />
+
+		<dt class="col-sm-3">Type:</dt>
+		<dd class="col-sm-9" th:text="${event.event_type}" />
+
+	</dl>
+
+
+</body>
+</html>

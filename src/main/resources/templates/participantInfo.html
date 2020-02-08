@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Info</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Nav Bar -->
+	<ul class="nav navbar-light bg-light justify-content-between">
+		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item">
+			<h4 class="nav-link disabled"
+				th:text="'Information for ' + ${participant.name}"></h4>
+		</li>
+
+		<li></li>
+	</ul>
+
+
+	<!--  Info -->
+	<dl class="row">
+	
+		<dt class="col-sm-3">Name:</dt>
+		<dd class="col-sm-9" th:text="${participant.name}" />
+
+		<dt class="col-sm-3">Firstname:</dt>
+		<dd class="col-sm-9" th:text="${participant.firstname}" />
+
+		<dt class="col-sm-3">Email:</dt>
+		<dd class="col-sm-9" th:text="${participant.email}" />
+
+		<dt class="col-sm-3">Birthdate:</dt>
+		<dd class="col-sm-9"
+			th:text="${#dates.format(participant.birth_date, 'yyyy-MM-dd')}" />
+
+		<dt class="col-sm-3">Organisation:</dt>
+		<dd class="col-sm-9" th:text="${participant.organisation}" />
+
+		<dt class="col-sm-3">Observations:</dt>
+		<dd class="col-sm-9" th:text="${participant.observations}" />
+
+
+	</dl>
+
+
+</body>
+</html>

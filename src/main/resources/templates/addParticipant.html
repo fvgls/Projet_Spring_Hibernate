@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add Participant</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Nav Bar -->
+	<ul class="nav navbar-light bg-light justify-content-between">
+		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item">
+			<h4 class="nav-link disabled" href="#">Inscription</h4>
+		</li>
+
+		<li></li>
+	</ul>
+
+	<!-- Participant Form -->
+	
+	<!-- For a particular event -->
+	<div th:if="${event} != null">
+		
+		<!-- Intitule of event -->
+		<ul class="nav justify-content-between">
+			<li class="nav-item">
+				<h4 class="nav-link disabled"
+					th:text="'Event: ' + ${event.intitule}" />
+			</li>
+		</ul>
+		
+		<!-- Form -->
+		<form th:action="@{/event/addParticipant/{id}(id=${event.num_event})}"
+			th:object="${newParticipant}" method="POST" class="col-6">
+			<div class="form-group">
+				<label for="name">Last Name: (*)</label> <input type="text"
+					th:field="*{name}" class="form-control" id="name" />
+			</div>
+
+			<div class="form-group">
+				<label for="firstname">First Name:</label> <input type="text"
+					th:field="*{firstname}" class="form-control" id="firstname" />
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email: (*)</label> <input type="text"
+					th:field="*{email}" class="form-control" id="email" />
+			</div>
+			
+			<div class="form-group">
+				<label for="birthdate">BirthDate: (yyyy-mm-dd)</label> <input type="date"
+					th:field="*{birth_date}" class="form-control" id="birthdate" />
+			</div>
+			
+			<div class="form-group">
+				<label for="organisation">Organisation:</label> <input type="text"
+					th:field="*{organisation}" class="form-control" id="organisation" />
+			</div>
+			
+			<div class="form-group">
+				<label for="observations">Observation:</label> <input type="text"
+					th:field="*{observations}" class="form-control" id="observations" />
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Add</button>
+		</form>
+	</div>
+
+
+
+	<!-- There is an error -->
+	<div th:unless="${event} != null">
+		<p style="color: red; font-style: italic;">An error has occurred, try again later</p>
+	</div>
+
+
+
+	<p>(*) Thoose elements are required.</p>
+	
+	<!-- Error handler -->
+	<!-- Check if errorMessage is not null and not empty -->
+	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+		style="color: red; font-style: italic;">...</div>
+</body>
+</html>
