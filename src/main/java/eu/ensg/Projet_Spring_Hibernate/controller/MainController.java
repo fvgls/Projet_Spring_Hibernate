@@ -57,4 +57,13 @@ public class MainController {
         // Send to view
         return "addParticipant";
     }
+    
+    @GetMapping(path = "/addEvent")
+    public String addEventPage(Model model) {
+        Event newEvent = new Event();
+        model.addAttribute("newEvent", newEvent);
+        
+        // Send to view
+        return "addEvent";
+    }
 }

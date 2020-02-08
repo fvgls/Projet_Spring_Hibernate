@@ -41,18 +41,38 @@ public class EventController {
      * @param model
      * @return View createEvent
      */
-    @PostMapping(path="/add")
-  public @ResponseBody String addNewEvent (@RequestParam String intitule, @RequestParam String theme, Model model) {
+    @PostMapping(path="/create")
+	public @ResponseBody String createNewEvent (@RequestParam String intitule, @RequestParam String theme, Model model) {
+	
+	    Event e = new Event();
+	    e.setIntitule(intitule);
+	    e.setTheme(theme);
+	    eventRepository.save(e);
+	    
+	    model.addAttribute("event", e);
+	
+	    return "createEvents: " + e.toString();
+	}
+    
+    @PostMapping(path = "/addEvent")
+    public
+    String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
 
-    Event e = new Event();
-    e.setIntitule(intitule);
-    e.setTheme(theme);
-    eventRepository.save(e);
-    
-    model.addAttribute("event", e);
-    
-    return "createEvents: " + e.toString();
-  }
+        if (newEvent.getIntitule() != null 
+                && newEvent.getIntitule().length() > 0
+                && newEvent.getTheme() != null 
+                && newEvent.getTheme().length() > 0) {
+            eventRepository.save(newEvent);
+
+            model.addAttribute("event", newEvent);
+            
+            return "redirect:/event/all";
+        }
+
+        model.addAttribute("errorMessage", "Name and email are requested");
+        
+        return "addEvent";
+    }
   
   
   /**
@@ -120,7 +140,7 @@ public class EventController {
                 return "redirect:/event/listParticipants/" + ev.get().getNum_event();
             }
             model.addAttribute("events", ev);
-            model.addAttribute("errorMessage", "Name and email are requested");
+            model.addAttribute("errorMessage", "Intitule and them of events are requested");
         }
         
             model.addAttribute("errorMessage", "An error has occured, try again later");
