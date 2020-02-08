@@ -7,6 +7,8 @@ package eu.ensg.Projet_Spring_Hibernate.controller;
 
 import eu.ensg.Projet_Spring_Hibernate.model.*;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * Controller for class Participant
@@ -76,6 +79,23 @@ public class ParticipantController {
         model.addAttribute("errorMessage", "Name and email are requested");
         
         return "addParticipant";
+    }
+    
+    
+    @GetMapping(path = "/{num_participant}")
+    public String getParticipantFromId(@PathVariable int num_participant, Model model) {
+        
+        Optional<Participant> p = participantRepository.findById(num_participant);
+        
+        if (p.isPresent()) {
+            model.addAttribute("participant", p.get());
+            return "participantInfo";
+        }
+        model.addAttribute("errorMessage", "An error has occured, try again later");
+        
+        // Send to view
+        return "participantsList";
+
     }
 
     
