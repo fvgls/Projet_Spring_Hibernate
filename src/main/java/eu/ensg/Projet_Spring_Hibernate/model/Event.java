@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Class Event
@@ -41,12 +42,14 @@ public class Event {
     private String theme;
     
     //@Column(name="starting_date", nullable=false)
-    private LocalDate starting_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date starting_date;
     
     //@Column(name="duration", nullable=false)
-    private Date duration;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ending_date;
     
-    //@Column(name="nb_part_max", nullable=false)
+    @Column(name="nb_part_max", nullable=false)
     private Integer nb_part_max;
     
     //@Column(name="description", nullable=false)
@@ -75,12 +78,12 @@ public class Event {
         return theme;
     }
 
-    public LocalDate getStarting_date() {
+    public Date getStarting_date() {
         return starting_date;
     }
 
-    public Date getDuration() {
-        return duration;
+    public Date getEnding_date() {
+        return ending_date;
     }
 
     public Integer getNb_part_max() {
@@ -116,12 +119,12 @@ public class Event {
         this.theme = theme;
     }
 
-    public void setStarting_date(LocalDate starting_date) {
+    public void setStarting_date(Date starting_date) {
         this.starting_date = starting_date;
     }
 
-    public void setDuration(Date duration) {
-        this.duration = duration;
+    public void setEnding_date(Date ending_date) {
+        this.ending_date = ending_date;
     }
 
     public void setNb_part_max(Integer nb_part_max) {

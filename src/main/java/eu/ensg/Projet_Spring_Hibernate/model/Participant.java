@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Class Participant
@@ -43,6 +44,7 @@ public class Participant {
     private String email;
     
     @Column(name="birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth_date;
     
     @Column(name="organisation")

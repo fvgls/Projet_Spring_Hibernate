@@ -35,10 +35,37 @@
 			<label for="theme">Theme: (*)</label> <input type="text"
 				th:field="*{theme}" class="form-control" id="theme" />
 		</div>
+		
+		<div class="form-group">
+			<label for="startingdate">starting Date: (yyyy-mm-dd)</label> <input
+				type="date" th:field="*{starting_date}" class="form-control"
+				id="startingdate" />
+		</div>
+
+		<div class="form-group">
+			<label for="endingdate">Ending Date: (yyyy-mm-dd)</label> <input
+				type="date" th:field="*{ending_date}" class="form-control"
+				id="endingdate" />
+		</div>
 
 		<div class="form-group">
 			<label for="organisator">Organisator:</label> <input type="text"
 				th:field="*{organisator}" class="form-control" id="organisator" />
+		</div>
+		
+		<div class="form-group">
+			<label for="nbMax">Maximum Participants: (*)</label> <input type="number" min="1" value="1"
+				th:field="*{nb_part_max}" class="form-control" id="nbMax" />
+		</div>
+		
+		<div class="form-group">
+			<label for="description">Description:</label> <input type="text"
+				th:field="*{description}" class="form-control" id="description" />
+		</div>
+		
+		<div class="form-group">
+			<label for="type">Type:</label> <input type="text"
+				th:field="*{event_type}" class="form-control" id="type" />
 		</div>
 
 

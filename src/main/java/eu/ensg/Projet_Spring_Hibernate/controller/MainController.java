@@ -48,6 +48,7 @@ public class MainController {
     public String addParticipantPage(@PathVariable int num_event, Model model) {
         Participant newParticipant = new Participant();
         model.addAttribute("newParticipant", newParticipant);
+      
         
         Optional<Event> ev = eventRepository.findById(num_event);
         if (ev.isPresent()) {
@@ -60,7 +61,7 @@ public class MainController {
     
     
     /**
-     * Go to the addevent form
+     * Go to the addEvent form
      * @param model
      * @return View addEvent
      */

@@ -53,37 +53,32 @@
 				<label for="email">Email: (*)</label> <input type="text"
 					th:field="*{email}" class="form-control" id="email" />
 			</div>
+			
+			<div class="form-group">
+				<label for="birthdate">BirthDate: (yyyy-mm-dd)</label> <input type="date"
+					th:field="*{birth_date}" class="form-control" id="birthdate" />
+			</div>
+			
+			<div class="form-group">
+				<label for="organisation">Organisation:</label> <input type="text"
+					th:field="*{organisation}" class="form-control" id="organisation" />
+			</div>
+			
+			<div class="form-group">
+				<label for="observations">Observation:</label> <input type="text"
+					th:field="*{observations}" class="form-control" id="observations" />
+			</div>
 
 
 			<button type="submit" class="btn btn-primary">Add</button>
 		</form>
 	</div>
 
-	<!-- For no particular event -->
+
+
+	<!-- There is an error -->
 	<div th:unless="${event} != null">
-		
-		<!-- Form -->
-		<form th:action="@{/participant/addParticipant}"
-			th:object="${newParticipant}" method="POST" class="col-6">
-
-			<div class="form-group">
-				<label for="name">Last Name: (*)</label> <input type="text"
-					th:field="*{name}" class="form-control" id="name" />
-			</div>
-
-			<div class="form-group">
-				<label for="firstname">First Name:</label> <input type="text"
-					th:field="*{firstname}" class="form-control" id="firstname" />
-			</div>
-
-			<div class="form-group">
-				<label for="email">Email: (*)</label> <input type="text"
-					th:field="*{email}" class="form-control" id="email" />
-			</div>
-
-
-			<button type="submit" class="btn btn-primary">Add</button>
-		</form>
+		<p style="color: red; font-style: italic;">An error has occurred, try again later</p>
 	</div>
 
 

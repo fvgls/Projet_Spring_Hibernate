@@ -26,7 +26,7 @@
 
 	<!--  Info -->
 	<dl class="row">
-	
+
 		<dt class="col-sm-3">Intitule:</dt>
 		<dd class="col-sm-9" th:text="${event.intitule}" />
 
@@ -37,8 +37,8 @@
 		<dd class="col-sm-9"
 			th:text="${#dates.format(event.starting_date, 'yyyy-MM-dd')}" />
 
-		<dt class="col-sm-3">Duration:</dt>
-		<dd class="col-sm-9" th:text="${event.duration}" />
+		<dt class="col-sm-3">Ending date:</dt>
+		<dd class="col-sm-9" th:text="${#dates.format(event.ending_date)}" />
 
 		<dt class="col-sm-3">Number of Participants:</dt>
 		<dd class="col-sm-9"

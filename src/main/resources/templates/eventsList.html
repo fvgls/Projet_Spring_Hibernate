@@ -35,8 +35,8 @@
 				<tr>
 					<th scope="col">Intitule</th>
 					<th scope="col">Theme</th>
-					<th scope="col">Starting Date</th>
-					<th scope="col">Duration</th>
+					<th scope="col">Starting</th>
+					<th scope="col">Ending</th>
 					<th scope="col">Organisator</th>
 					<th scope="col">Actions</th>
 				</tr>
@@ -46,7 +46,7 @@
 					<td th:text="${e.intitule}">...</td>
 					<td th:text="${e.theme}">...</td>
 					<td th:text="${#dates.format(e.starting_date, 'yyyy-MM-dd')}">...</td>
-					<td th:text="${e.duration}">...</td>
+					<td th:text="${#dates.format(e.ending_date)}">...</td>
 					<td th:text="${e.organisator}">...</td>
 					<td><a th:href="@{/event/{id}(id=${e.num_event})}"
 						class="btn btn-sm btn-outline-secondary">Info</a> <a

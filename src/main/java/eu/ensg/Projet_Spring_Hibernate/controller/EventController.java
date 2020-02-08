@@ -74,7 +74,7 @@ public class EventController {
             return "redirect:/event/all";
         }
 
-        model.addAttribute("errorMessage", "Name and email are requested");
+        model.addAttribute("errorMessage", "Intitule and theme are requested");
         
         return "addEvent";
     }
@@ -144,7 +144,9 @@ public class EventController {
                 return "redirect:/event/listParticipants/" + ev.get().getNum_event();
             }
             model.addAttribute("events", ev);
-            model.addAttribute("errorMessage", "Intitule and them of events are requested");
+            model.addAttribute("errorMessage", "Name and email are requested");
+        
+            return "redirect:/addParticipant/" + ev.get().getNum_event();
         }
         
             model.addAttribute("errorMessage", "An error has occured, try again later");
