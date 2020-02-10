@@ -2,7 +2,7 @@
 <html xmlns=http://www.w3.org/1999/xhtml
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Info</title>
+<title>Projet Spring Hibernate</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,10 +17,10 @@
 	<ul class="nav navbar-light bg-light justify-content-between">
 		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 		<li class="nav-item">
-			<h4 class="nav-link disabled" th:text="'Information for ' + ${event}"></h4>
+			<h4 class="nav-link disabled" th:text="'Information for ' + ${event.intitule}"></h4>
 		</li>
 
-		<li></li>
+		<li class="nav-item"><a class="nav-link" href="/event/all">See all events</a></li>
 	</ul>
 
 
