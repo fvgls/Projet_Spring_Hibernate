@@ -118,4 +118,27 @@ public class ParticipantController {
         // Send to view
         return "participantsList";
     }
+    
+    
+    
+    @GetMapping(path = "/delete/{num_participant}")
+    public String deleteParticipantById(@PathVariable int num_participant, Model model) {
+    	
+    	Optional<Participant> p = participantRepository.findById(num_participant);
+        
+        if (p.isPresent()) {
+        	
+        	participantRepository.delete(p.get());
+        	
+        	model.addAttribute("successMessage", "The participant has been deleted with success");
+        	
+            return "participantInfo";
+        }
+        
+        model.addAttribute("errorMessage", "An error has occured, try again later");
+        
+
+        // Send to view
+        return "participantInfo";
+    }
 }

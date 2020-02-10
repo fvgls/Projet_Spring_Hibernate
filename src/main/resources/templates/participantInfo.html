@@ -18,15 +18,26 @@
 		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 		<li class="nav-item">
 			<h4 class="nav-link disabled"
-				th:text="'Information for ' + ${participant.name}"></h4>
+				th:if="${participant} != null" th:text="'Information for ' + ${participant.name}"></h4>
+			<h4 class="nav-link disabled"
+				th:unless="${participant} != null">Information</h4>
 		</li>
 
 		<li class="nav-item"><a class="nav-link" href="/event/all">See all events</a></li>
 	</ul>
+	
+	
+	<!-- Check if errorMessage is not null and not empty -->
+	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+		style="color: red; font-style: italic;">...</div>
+		
+	<!-- Check if successMessage is not null and not empty -->
+	<div th:if="${successMessage}" th:utext="${successMessage}"
+		style="color: green; font-style: italic;">...</div>
 
 
 	<!--  Info -->
-	<dl class="row">
+	<dl th:if="${participant} != null" class="row">
 	
 		<dt class="col-sm-3">Name:</dt>
 		<dd class="col-sm-9" th:text="${participant.name}" />
