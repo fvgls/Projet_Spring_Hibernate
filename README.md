@@ -14,14 +14,15 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 ### Model
 
 * A event has a list of participants.
-* A participant can take part of only one event
+* A participant can take part in only one event
     * **NB:** A user of the application would have to create a participant profile for each event he want to attend.
 
 
 ### Functionnalities
 
 * List events
-* List participants in a particular event
+* List participants of a particular event
+* List all participants
 * Add partcipant to an event
 * See event information
 * See participant information
