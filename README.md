@@ -5,7 +5,7 @@ This is a project for the J2ee lesson of the TSI courses at [Ecole Nationale des
 The aim was to implement an MVC application with SpringBoot and Hibernate which had to managing participants to events by at least:
 * Listing events
 * Listing participants
-* adding participant to event
+* Adding participant to event
 
 ---
 
@@ -26,6 +26,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 * Add partcipant to an event
 * See event information
 * See participant information
+* Delete a participant
 
 
 
