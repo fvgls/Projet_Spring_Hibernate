@@ -64,7 +64,9 @@
 					<td th:if="${event} == null"><div th:if="${p.event} != null"
 							th:text="${p.event.intitule}"></div></td>
 					<td><a th:href="@{/participant/{id}(id=${p.num_pers})}"
-						class="btn btn-sm btn-outline-secondary">Info</a></td>
+						class="btn btn-sm btn-outline-secondary">Info</a>
+						<a th:href="@{/participant/delete/{id}(id=${p.num_pers})}"
+						class="btn btn-sm btn-outline-secondary">Delete</a></td>
 				</tr>
 			</th:block> </thbody>
 		</table>
