@@ -122,12 +122,20 @@ public class EventController {
 		Optional<Event> e = eventRepository.findById(num_event);
 
 		if (e.isPresent()) {
+			
+			Event event = e.get();
+			
+			List<Participant> listPart = event.getParticipants();
+			
+			for (int i=0; i<listPart.size(); i++) {
+				participantRepository.delete(listPart.get(i));
+			}
 
-			eventRepository.delete(e.get());
-
+			eventRepository.delete(event);
 			model.addAttribute("successMessage", "The event has been deleted with success");
-
 			return "eventInfo";
+				
+
 		}
 
 		model.addAttribute("errorMessage", "An error has occured, try again later");
