@@ -37,29 +37,36 @@
 
 
 	<!--  Info -->
-	<dl th:if="${participant} != null" class="row">
+	<div th:if="${participant} != null">
+		<dl class="row">
+		
+			<dt class="col-sm-3">Name:</dt>
+			<dd class="col-sm-9" th:text="${participant.name}" />
 	
-		<dt class="col-sm-3">Name:</dt>
-		<dd class="col-sm-9" th:text="${participant.name}" />
-
-		<dt class="col-sm-3">Firstname:</dt>
-		<dd class="col-sm-9" th:text="${participant.firstname}" />
-
-		<dt class="col-sm-3">Email:</dt>
-		<dd class="col-sm-9" th:text="${participant.email}" />
-
-		<dt class="col-sm-3">Birthdate:</dt>
-		<dd class="col-sm-9"
-			th:text="${#dates.format(participant.birth_date, 'yyyy-MM-dd')}" />
-
-		<dt class="col-sm-3">Organisation:</dt>
-		<dd class="col-sm-9" th:text="${participant.organisation}" />
-
-		<dt class="col-sm-3">Observations:</dt>
-		<dd class="col-sm-9" th:text="${participant.observations}" />
-
-
-	</dl>
+			<dt class="col-sm-3">Firstname:</dt>
+			<dd class="col-sm-9" th:text="${participant.firstname}" />
+	
+			<dt class="col-sm-3">Email:</dt>
+			<dd class="col-sm-9" th:text="${participant.email}" />
+	
+			<dt class="col-sm-3">Birthdate:</dt>
+			<dd class="col-sm-9"
+				th:text="${#dates.format(participant.birth_date, 'yyyy-MM-dd')}" />
+	
+			<dt class="col-sm-3">Organisation:</dt>
+			<dd class="col-sm-9" th:text="${participant.organisation}" />
+	
+			<dt class="col-sm-3">Observations:</dt>
+			<dd class="col-sm-9" th:text="${participant.observations}" />
+	
+	
+		</dl>
+		
+		<a th:href="@{/participant/delete/{id}(id=${participant.num_pers})}" class="btn btn-outline-secondary">Delete</a>
+	
+	</div>
+	
+	
 
 
 </body>
