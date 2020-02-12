@@ -20,14 +20,19 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 
 ### Functionnalities
 
+#### Event
 * List events
-* List participants of a particular event
-* List all participants
-* Add partcipant to an event
 * See event information
+* Delete an event
+* List participant for a particular event
+* Add participant to a particular event
+
+#### Participant
+* List all participants
+* List participant for a particular event
+* Add participant to a particular event
 * See participant information
 * Delete a participant
-
 
 
 ## Installation
