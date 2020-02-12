@@ -21,7 +21,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 ### Functionnalities
 
 #### Event
-* List events
+* List all events
 * See event information
 * Delete an event
 * List participant for a particular event
