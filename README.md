@@ -23,7 +23,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 #### Event
 * List all events
 * See event information
-* Delete an event
+* Delete an event (and thus its participants)
 * List participant for a particular event
 * Add participant to a particular event
 
