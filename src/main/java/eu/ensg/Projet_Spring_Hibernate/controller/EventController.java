@@ -22,154 +22,171 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller for class Event
+ * 
  * @author fvgls
  */
 @Controller
 @RequestMapping(path = "/event")
 public class EventController {
-    
-    @Autowired
-    private EventRepository eventRepository;
-    @Autowired
-    private ParticipantRepository participantRepository;
-    
-    
-    /**
-     * Post method to create a new event with params directly
-     * @param intitule
-     * @param theme
-     * @param model
-     * @return String event
-     */
-    @PostMapping(path="/create")
-	public @ResponseBody String createNewEvent (@RequestParam String intitule, @RequestParam String theme, Model model) {
-	
-	    Event e = new Event();
-	    e.setIntitule(intitule);
-	    e.setTheme(theme);
-	    eventRepository.save(e);
-	    
-	    model.addAttribute("event", e);
-	
-	    return "createEvents: " + e.toString();
+
+	@Autowired
+	private EventRepository eventRepository;
+	@Autowired
+	private ParticipantRepository participantRepository;
+
+	/**
+	 * Post method to create a new event with params directly
+	 * 
+	 * @param intitule
+	 * @param theme
+	 * @param model
+	 * @return String event
+	 */
+	@PostMapping(path = "/create")
+	public @ResponseBody String createNewEvent(@RequestParam String intitule, @RequestParam String theme, Model model) {
+
+		Event e = new Event();
+		e.setIntitule(intitule);
+		e.setTheme(theme);
+		eventRepository.save(e);
+
+		model.addAttribute("event", e);
+
+		return "createEvents: " + e.toString();
 	}
-    
-    /**
-     * Post request to add new Event from form
-     * @param model
-     * @param newEvent
-     * @return View /event/all
-     */
-    @PostMapping(path = "/addEvent")
-    public String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
 
-        if (newEvent.getIntitule() != null 
-                && newEvent.getIntitule().length() > 0
-                && newEvent.getTheme() != null 
-                && newEvent.getTheme().length() > 0) {
-            eventRepository.save(newEvent);
+	/**
+	 * Post request to add new Event from form
+	 * 
+	 * @param model
+	 * @param newEvent
+	 * @return View /event/all
+	 */
+	@PostMapping(path = "/addEvent")
+	public String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
 
-            model.addAttribute("event", newEvent);
-            
-            return "redirect:/event/all";
-        }
+		if (newEvent.getIntitule() != null && newEvent.getIntitule().length() > 0 && newEvent.getTheme() != null
+				&& newEvent.getTheme().length() > 0) {
+			eventRepository.save(newEvent);
 
-        model.addAttribute("errorMessage", "Intitule and theme are requested");
-        
-        return "addEvent";
-    }
-  
-  
-  /**
-   * Get event information by id
-   * @param num_event
-   * @param model
-   * @return View eventInfo
-   */
-  @GetMapping(path = "/{num_event}")
-    public String getEventFromId(@PathVariable int num_event, Model model) {
-        
-        Optional<Event> ev = eventRepository.findById(num_event);
-        
-        if (ev.isPresent()) {
-            model.addAttribute("event", ev.get());
-            return "eventInfo";
-        }
-        model.addAttribute("errorMessage", "An error has occured, try again later");
-        
-        // Send to view
-        return "eventsList";
+			model.addAttribute("event", newEvent);
 
-    }
+			return "redirect:/event/all";
+		}
 
-    
-    /**
-     * Get all events
-     * @param model
-     * @return View eventsList
-     */
-    @GetMapping(path = "/all")
-    public String getAllEvents(Model model) {
-        model.addAttribute("listEvents", eventRepository.findAll());
+		model.addAttribute("errorMessage", "Intitule and theme are requested");
 
-        // Send to view
-        return "eventsList";
-    }
-    
-    
-    /**
-     * Post request to add this participant to the event
-     * @param newParticipant
-     * @param model
-     * @return 
-     */
-    @PostMapping("/addParticipant/{num_event}")
-    public String addParticipantToEvent(@PathVariable int num_event, Model model, @ModelAttribute("newParticipant") Participant newParticipant) {
-        
-        Optional<Event> ev = eventRepository.findById(num_event);
-        if (ev.isPresent()) {
-            
-            if (newParticipant.getName() != null 
-                    && newParticipant.getName().length() > 0
-                    && newParticipant.getEmail() != null 
-                    && newParticipant.getEmail().length() > 0) {
+		return "addEvent";
+	}
 
+	/**
+	 * Get event information by id
+	 * 
+	 * @param num_event
+	 * @param model
+	 * @return View eventInfo
+	 */
+	@GetMapping(path = "/{num_event}")
+	public String getEventFromId(@PathVariable int num_event, Model model) {
 
-                newParticipant.setEvent(ev.get());
-                
-                participantRepository.save(newParticipant);
+		Optional<Event> ev = eventRepository.findById(num_event);
 
-                model.addAttribute("participant", newParticipant);
+		if (ev.isPresent()) {
+			model.addAttribute("event", ev.get());
+			return "eventInfo";
+		}
+		model.addAttribute("errorMessage", "An error has occured, try again later");
 
-                return "redirect:/event/listParticipants/" + ev.get().getNum_event();
-            }
-            model.addAttribute("events", ev);
-            model.addAttribute("errorMessage", "Name and email are requested");
-        
-            return "redirect:/addParticipant/" + ev.get().getNum_event();
-        }
-        
-            model.addAttribute("errorMessage", "An error has occured, try again later");
-        
+		// Send to view
+		return "eventsList";
 
-        return "addParticipant";
-    }
-    
-    
-    /**
-     * Get list of participants for the given event
-     * @param num_event
-     * @param model
-     * @return View participantsList
-     */
-    @GetMapping("/listParticipants/{num_event}")
-    public String listParticipant(@PathVariable int num_event, Model model) {
-        Optional<Event> ev = eventRepository.findById(num_event);
-        if (ev.isPresent()) {
-            model.addAttribute("listParticipant", ev.get().getParticipants());
-            model.addAttribute("event", ev.get());
-        }
-        
-        return "participantsList";
-    }
+	}
+
+	/**
+	 * Get all events
+	 * 
+	 * @param model
+	 * @return View eventsList
+	 */
+	@GetMapping(path = "/all")
+	public String getAllEvents(Model model) {
+		model.addAttribute("listEvents", eventRepository.findAll());
+
+		// Send to view
+		return "eventsList";
+	}
+
+	@GetMapping(path = "/delete/{num_event}")
+	public String deleteEventById(@PathVariable int num_event, Model model) {
+
+		Optional<Event> e = eventRepository.findById(num_event);
+
+		if (e.isPresent()) {
+
+			eventRepository.delete(e.get());
+
+			model.addAttribute("successMessage", "The event has been deleted with success");
+
+			return "eventInfo";
+		}
+
+		model.addAttribute("errorMessage", "An error has occured, try again later");
+
+		// Send to view
+		return "eventInfo";
+	}
+
+	/**
+	 * Post request to add this participant to the event
+	 * 
+	 * @param newParticipant
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/addParticipant/{num_event}")
+	public String addParticipantToEvent(@PathVariable int num_event, Model model,
+			@ModelAttribute("newParticipant") Participant newParticipant) {
+
+		Optional<Event> ev = eventRepository.findById(num_event);
+		if (ev.isPresent()) {
+
+			if (newParticipant.getName() != null && newParticipant.getName().length() > 0
+					&& newParticipant.getEmail() != null && newParticipant.getEmail().length() > 0) {
+
+				newParticipant.setEvent(ev.get());
+
+				participantRepository.save(newParticipant);
+
+				model.addAttribute("participant", newParticipant);
+
+				return "redirect:/event/listParticipants/" + ev.get().getNum_event();
+			}
+			model.addAttribute("events", ev);
+			model.addAttribute("errorMessage", "Name and email are requested");
+
+			return "redirect:/addParticipant/" + ev.get().getNum_event();
+		}
+
+		model.addAttribute("errorMessage", "An error has occured, try again later");
+
+		return "addParticipant";
+	}
+
+	/**
+	 * Get list of participants for the given event
+	 * 
+	 * @param num_event
+	 * @param model
+	 * @return View participantsList
+	 */
+	@GetMapping("/listParticipants/{num_event}")
+	public String listParticipant(@PathVariable int num_event, Model model) {
+		Optional<Event> ev = eventRepository.findById(num_event);
+		if (ev.isPresent()) {
+			model.addAttribute("listParticipant", ev.get().getParticipants());
+			model.addAttribute("event", ev.get());
+		}
+
+		return "participantsList";
+	}
 }
