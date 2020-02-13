@@ -8,6 +8,8 @@ package eu.ensg.Projet_Spring_Hibernate.controller;
 import eu.ensg.Projet_Spring_Hibernate.model.Event;
 import eu.ensg.Projet_Spring_Hibernate.model.EventRepository;
 import eu.ensg.Projet_Spring_Hibernate.model.Participant;
+import eu.ensg.Projet_Spring_Hibernate.model.ParticipantRepository;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path="/")
 public class MainController {
     
+	@Autowired
+    private ParticipantRepository participantRepository;
     @Autowired
     private EventRepository eventRepository;
     
@@ -57,6 +61,24 @@ public class MainController {
         
         // Send to view
         return "addParticipant";
+    }
+    
+    @GetMapping(path = "/modifyParticipant/{num_pers}")
+    public String modifyParticipantPage(@PathVariable int num_pers, Model model) {
+    	
+        Optional<Participant> participant = participantRepository.findById(num_pers);
+      
+        
+        if (participant.isPresent()) {
+            model.addAttribute("participant", participant.get());
+            // Send to view
+            return "modifyParticipant";
+        }
+        
+        model.addAttribute("errorMessage", "An error has occured, try again later");
+        
+        // Send to view
+        return "participantInfo";
     }
     
     

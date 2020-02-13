@@ -83,6 +83,7 @@ public class ParticipantController {
     
     
     
+    
     /**
      * Get participant information by id
      * @param num_participant
@@ -140,5 +141,46 @@ public class ParticipantController {
 
         // Send to view
         return "participantInfo";
+    }
+    
+    
+    @PostMapping(path = "/modifyParticipant/{num_participant}")
+    public
+    String modifyParticipant(@PathVariable int num_participant, Model model, @ModelAttribute("participant") Participant modifiedParticipant) {
+
+        if (modifiedParticipant.getName() != null 
+                && modifiedParticipant.getName().length() > 0
+                && modifiedParticipant.getEmail() != null 
+                && modifiedParticipant.getEmail().length() > 0) {
+        	
+        	Optional<Participant> optionalRealParticipant = participantRepository.findById(num_participant);
+        	
+        	if (optionalRealParticipant.isPresent()) {
+        		Participant realParticipant = optionalRealParticipant.get();
+        		
+        		realParticipant.setName(modifiedParticipant.getName());
+        		realParticipant.setFirstname(modifiedParticipant.getFirstname());
+        		realParticipant.setEmail(modifiedParticipant.getEmail());
+        		realParticipant.setBirth_date(modifiedParticipant.getBirth_date());
+        		realParticipant.setOrganisation(modifiedParticipant.getOrganisation());
+        		realParticipant.setObservations(modifiedParticipant.getObservations());
+        		
+        		participantRepository.save(realParticipant);
+        		
+        		model.addAttribute("participant", realParticipant);
+        		
+        		return "participantInfo";
+        		
+        	} else {
+        		model.addAttribute("errorMessage", "An error has occured, try again later");
+                
+                return "redirect:/modifyParticipant/{" + num_participant + "}";
+        	}
+        	
+        }
+
+        model.addAttribute("errorMessage", "Name and email are requested");
+        
+        return "redirect:/modifyParticipant/{" + num_participant + "}";
     }
 }
