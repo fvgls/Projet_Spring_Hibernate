@@ -33,6 +33,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 * Add participant to a particular event
 * See participant information
 * Delete a participant
+* Modify participant information
 
 
 ## Installation
