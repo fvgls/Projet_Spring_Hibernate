@@ -67,7 +67,10 @@
 			<dd class="col-sm-9" th:text="${event.event_type}" />
 	
 		</dl>
+		
 		<a th:href="@{/event/delete/{id}(id=${event.num_event})}" class="btn btn-outline-secondary">Delete</a>
+		<a th:href="@{/modifyEvent/{id}(id=${event.num_event})}" class="btn btn-outline-secondary">Modify</a>
+		
 	</div>
 
 </body>

@@ -116,6 +116,13 @@ public class EventController {
 		return "eventsList";
 	}
 
+	
+	/**
+	 * Get method to delete an event by giving its id
+	 * @param num_event
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(path = "/delete/{num_event}")
 	public String deleteEventById(@PathVariable int num_event, Model model) {
 
@@ -143,6 +150,51 @@ public class EventController {
 		// Send to view
 		return "eventInfo";
 	}
+	
+	
+	@PostMapping(path = "/modifyEvent/{num_event}")
+    public
+    String modifyEvent(@PathVariable int num_event, Model model, @ModelAttribute("event") Event modifiedEvent) {
+
+        if (modifiedEvent.getIntitule() != null 
+                && modifiedEvent.getIntitule().length() > 0
+                && modifiedEvent.getTheme() != null 
+                && modifiedEvent.getTheme().length() > 0) {
+        	
+        	Optional<Event> optionalRealEvent = eventRepository.findById(num_event);
+        	
+        	if (optionalRealEvent.isPresent()) {
+        		Event realEvent = optionalRealEvent.get();
+        		
+        		realEvent.setIntitule(modifiedEvent.getIntitule());
+        		realEvent.setTheme(modifiedEvent.getTheme());
+        		realEvent.setStarting_date(modifiedEvent.getStarting_date());
+        		realEvent.setEnding_date(modifiedEvent.getEnding_date());
+        		realEvent.setNb_part_max(modifiedEvent.getNb_part_max());
+        		realEvent.setDescription(modifiedEvent.getDescription());
+        		realEvent.setOrganisator(modifiedEvent.getOrganisator());
+        		realEvent.setEvent_type(modifiedEvent.getEvent_type());
+        		
+        		eventRepository.save(realEvent);
+        		
+        		model.addAttribute("event", realEvent);
+        		
+        		return "eventInfo";
+        		
+        	} else {
+        		model.addAttribute("errorMessage", "An error has occured, try again later");
+                
+                return "redirect:/modifyEvent/{" + num_event + "}";
+        	}
+        	
+        }
+
+        model.addAttribute("errorMessage", "Intitule and theme are requested");
+        
+        return "redirect:/modifyEvent/{" + num_event + "}";
+    }
+	
+	
 
 	/**
 	 * Post request to add this participant to the event

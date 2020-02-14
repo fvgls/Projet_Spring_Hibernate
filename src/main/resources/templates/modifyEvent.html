@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Projet Spring Hibernate</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Nav Bar -->
+	<ul class="nav navbar-light bg-light justify-content-between">
+		<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+		<li class="nav-item">
+			<h4 class="nav-link disabled" href="#">Modification Event</h4>
+		</li>
+
+		<li class="nav-item"><a class="nav-link" href="/event/all">See all events</a></li>
+	</ul>
+
+	<!-- Form -->
+	<form th:action="@{/event/modifyEvent/{id}(id=${event.num_event})}" th:object="${event}"
+		method="POST" class="col-6">
+		<div class="form-group">
+			<label for="intitule">Intitule: (*)</label> <input type="text"
+				th:field="*{intitule}" class="form-control" id="intitule" />
+		</div>
+
+		<div class="form-group">
+			<label for="theme">Theme: (*)</label> <input type="text"
+				th:field="*{theme}" class="form-control" id="theme" />
+		</div>
+		
+		<div class="form-group">
+			<label for="startingdate">starting Date: (yyyy-mm-dd)</label> <input
+				type="date" th:field="*{starting_date}" class="form-control"
+				id="startingdate" />
+		</div>
+
+		<div class="form-group">
+			<label for="endingdate">Ending Date: (yyyy-mm-dd)</label> <input
+				type="date" th:field="*{ending_date}" class="form-control"
+				id="endingdate" />
+		</div>
+
+		<div class="form-group">
+			<label for="organisator">Organisator:</label> <input type="text"
+				th:field="*{organisator}" class="form-control" id="organisator" />
+		</div>
+		
+		<div class="form-group">
+			<label for="nbMax">Maximum Participants: (*)</label> <input type="number" min="1" value="1"
+				th:field="*{nb_part_max}" class="form-control" id="nbMax" />
+		</div>
+		
+		<div class="form-group">
+			<label for="description">Description:</label> <input type="text"
+				th:field="*{description}" class="form-control" id="description" />
+		</div>
+		
+		<div class="form-group">
+			<label for="type">Type:</label> <input type="text"
+				th:field="*{event_type}" class="form-control" id="type" />
+		</div>
+
+
+		<button type="submit" class="btn btn-primary">Modify</button>
+	</form>
+
+	<p>(*) Thoose elements are required.</p>
+
+
+	<!-- Check if errorMessage is not null and not empty -->
+	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+		style="color: red; font-style: italic;">...</div>
+</body>
+</html>

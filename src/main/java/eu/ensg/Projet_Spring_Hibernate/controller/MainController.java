@@ -95,4 +95,29 @@ public class MainController {
         // Send to view
         return "addEvent";
     }
+    
+    
+    /**
+     * Go to the modifyEvent Page
+     * @param num_pers
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/modifyEvent/{num_even}")
+    public String modifyEventPage(@PathVariable int num_even, Model model) {
+    	
+        Optional<Event> event = eventRepository.findById(num_even);
+      
+        
+        if (event.isPresent()) {
+            model.addAttribute("event", event.get());
+            // Send to view
+            return "modifyEvent";
+        }
+        
+        model.addAttribute("errorMessage", "An error has occured, try again later");
+        
+        // Send to view
+        return "eventInfo";
+    }
 }
