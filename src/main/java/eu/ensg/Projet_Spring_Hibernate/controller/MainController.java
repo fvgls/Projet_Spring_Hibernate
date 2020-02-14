@@ -63,6 +63,12 @@ public class MainController {
         return "addParticipant";
     }
     
+    /**
+     * go to the modifyParticipant form
+     * @param num_pers
+     * @param model
+     * @return View modifyParticipant, if error participantInfo
+     */
     @GetMapping(path = "/modifyParticipant/{num_pers}")
     public String modifyParticipantPage(@PathVariable int num_pers, Model model) {
     	
@@ -101,7 +107,7 @@ public class MainController {
      * Go to the modifyEvent Page
      * @param num_pers
      * @param model
-     * @return
+     * @return View modifyEvent, if error eventInfo
      */
     @GetMapping(path = "/modifyEvent/{num_even}")
     public String modifyEventPage(@PathVariable int num_even, Model model) {

@@ -60,7 +60,7 @@ public class EventController {
 	 * 
 	 * @param model
 	 * @param newEvent
-	 * @return View /event/all
+	 * @return Redirect tp /event/all, or if error View addEvent
 	 */
 	@PostMapping(path = "/addEvent")
 	public String addNewEvent(Model model, @ModelAttribute("newEvent") Event newEvent) {
@@ -118,10 +118,10 @@ public class EventController {
 
 	
 	/**
-	 * Get method to delete an event by giving its id
+	 * Get request to delete an event by giving its id
 	 * @param num_event
 	 * @param model
-	 * @return
+	 * @return View eventinfo
 	 */
 	@GetMapping(path = "/delete/{num_event}")
 	public String deleteEventById(@PathVariable int num_event, Model model) {
@@ -152,6 +152,13 @@ public class EventController {
 	}
 	
 	
+	/**
+	 * Post request to modify an event identified by its id
+	 * @param num_event
+	 * @param model
+	 * @param modifiedEvent
+	 * @return View eventInfo, if error redirect to /modifyEvent/{num_event}
+	 */
 	@PostMapping(path = "/modifyEvent/{num_event}")
     public
     String modifyEvent(@PathVariable int num_event, Model model, @ModelAttribute("event") Event modifiedEvent) {
@@ -201,7 +208,7 @@ public class EventController {
 	 * 
 	 * @param newParticipant
 	 * @param model
-	 * @return
+	 * @return Redirect to /event/listParticipant/{num_event}, or if error View addParticipant
 	 */
 	@PostMapping("/addParticipant/{num_event}")
 	public String addParticipantToEvent(@PathVariable int num_event, Model model,

@@ -58,8 +58,8 @@ public class ParticipantController {
     /**
      * Post request to add new Participant from form
      * @param model
-     * @param newParticipant
-     * @return View /participant/list
+     * @param newParticipant 
+     * @return Redirect /participant/all, or if error View addParticipant
      */
     @PostMapping(path = "/addParticipant")
     public
@@ -110,7 +110,7 @@ public class ParticipantController {
     /**
      * Get request to get all Participant
      * @param model
-     * @return View participantList
+     * @return View participantsList
      */
     @GetMapping(path = "/all")
     public String getAllParticipant(Model model) {
@@ -121,7 +121,12 @@ public class ParticipantController {
     }
     
     
-    
+    /**
+     * Get request to delete the participant identified by id
+     * @param num_participant
+     * @param model
+     * @return View participantInfo
+     */
     @GetMapping(path = "/delete/{num_participant}")
     public String deleteParticipantById(@PathVariable int num_participant, Model model) {
     	
@@ -144,6 +149,13 @@ public class ParticipantController {
     }
     
     
+    /**
+     * Post request to modify a participant
+     * @param num_participant	id of the participant to modify
+     * @param model
+     * @param modifiedParticipant	the participant modified by form
+     * @return View participantInfo, or if error redirect to /modifyParticipant/{num_part}
+     */
     @PostMapping(path = "/modifyParticipant/{num_participant}")
     public
     String modifyParticipant(@PathVariable int num_participant, Model model, @ModelAttribute("participant") Participant modifiedParticipant) {
