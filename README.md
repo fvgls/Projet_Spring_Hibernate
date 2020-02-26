@@ -2,7 +2,7 @@
 
 This is a project for the J2ee lesson of the TSI courses at [Ecole Nationale des Sciences Géographiques](www.ensg.eu).
 
-The aim was to implement an MVC application with SpringBoot and Hibernate which had to managing participants to events by at least:
+The aim was to implement an MVC application with SpringBoot and Hibernate which had to manage events and their participants by at least:
 * Listing events
 * Listing participants
 * Adding participant to event
@@ -15,7 +15,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 
 * A event has a list of participants.
 * A participant can take part in only one event
-    * **NB:** A user of the application would have to create a participant profile for each event he want to attend.
+    * **NB:** A user of the application would have to create a participant profile for each event he wants to attend.
 
 
 ### Functionnalities
@@ -40,7 +40,7 @@ The aim was to implement an MVC application with SpringBoot and Hibernate which 
 
 ## Installation
 
-The project required a mysql database and an IDE, such as Eclipse or NetBean, to run a Maven project.
+The project requires a mysql database and an IDE, such as Eclipse or NetBean, to run a Maven project.
 
 ### MySQL and database
 
